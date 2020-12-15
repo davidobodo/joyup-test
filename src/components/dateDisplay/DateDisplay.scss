@@ -34,7 +34,7 @@
         display: none;
 
         // width: 270px; First difference from locations dropdown
-        top: 84%; //Second difference from Locations dropdown
+        top: 62px; //Second difference from Locations dropdown
         left: 60px;
 
         &:before {
@@ -71,5 +71,12 @@
                 background-color: $medium-green;
             }
         }
+    }
+
+    //Custom date range picker component Overrides
+    .daterangepicker {
+        position: absolute;
+        left: 165px !important;
+        top: 55px;
     }
 }
