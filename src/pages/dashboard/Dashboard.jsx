@@ -13,7 +13,7 @@ import infoIcon from "../../assets/info.svg";
 import "./Dashboard.scss";
 const DashboardPage = () => {
     //------------------------------------------------------------------
-    //State
+    //States
     //------------------------------------------------------------------
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 

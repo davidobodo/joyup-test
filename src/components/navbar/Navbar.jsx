@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 
 import "./Navbar.scss";
 
 const Navbar = () => {
+    //------------------------------------------------------------------
+    //State
+    //------------------------------------------------------------------
+    const [selectedOption, setSelectedOption] = useState("");
+    const [isDropdownOpen, setIsDropdodwnOpen] = useState(false);
+
+    //------------------------------------------------------------------
+    //Toggle the display of the dropdown
+    //------------------------------------------------------------------
+    const handleToggleDropdown = useCallback(() => {
+        setIsDropdodwnOpen(!isDropdownOpen);
+    }, [isDropdownOpen]);
+
     return (
         <nav className="navbar">
             <div className="navbar__left-column">
-                <div className="dropdown">
-                    <div className="dropdown__header">
+                <div className={isDropdownOpen ? "dropdown is-open" : "dropdown"}>
+                    <div className="dropdown__header" onClick={handleToggleDropdown}>
                         Location
                         <div className="arrow"></div>
                     </div>
