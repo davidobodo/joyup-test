@@ -3,6 +3,8 @@ import React, { useRef, useState, useCallback } from "react";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import Hamburger from "../../components/hamburger/Hamburger";
+import DateDisplay from "../../components/dateDisplay/DateDisplay";
+import useDropdown from "../../components/customHooks/useDropdown";
 
 import fbIcon from "../../assets/facebook.svg";
 import mesIcon from "../../assets/messenger.svg";
@@ -12,6 +14,11 @@ import infoIcon from "../../assets/info.svg";
 
 import "./Dashboard.scss";
 const DashboardPage = () => {
+    //------------------------------------------------------------------
+    //Helpers
+    //------------------------------------------------------------------
+    const { isDropdownOpen, handleToggleDropdown } = useDropdown();
+
     //------------------------------------------------------------------
     //States
     //------------------------------------------------------------------
@@ -61,14 +68,11 @@ const DashboardPage = () => {
             <div className="dashboard-page">
                 <Sidebar isSidebarOpen={isSidebarOpen} />
                 <div className={isSidebarOpen ? "backdrop show" : "backdrop"} onClick={handleToggleSidebar}></div>
-
                 <Hamburger handleToggleSidebar={handleToggleSidebar} isSidebarOpen={isSidebarOpen} />
                 <main className="content">
                     <Navbar />
                     <div className="dashboard-details">
-                        <section className="dashboard-details__date-wrapper">
-                            <h4>Decembar 3, 2020 - December 9, 2020</h4>
-                        </section>
+                        <DateDisplay isDropdownOpen={isDropdownOpen} handleToggleDropdown={handleToggleDropdown} />
                         <section className="dashboard-details__cards-wrapper">
                             {CARD_INFO.map((item) => {
                                 const { title, number, logo, id } = item;

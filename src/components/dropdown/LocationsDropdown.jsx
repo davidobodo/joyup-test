@@ -3,7 +3,6 @@ import React, { memo } from "react";
 import "./LocationsDropdown.scss";
 
 const LocationsDropdown = ({ isDropdownOpen, handleToggleDropdown }) => {
-    console.log(isDropdownOpen);
     return (
         <div className={isDropdownOpen ? "locations-dropdown is-open" : "locations-dropdown"}>
             <div className="locations-dropdown__header" onClick={handleToggleDropdown}>
