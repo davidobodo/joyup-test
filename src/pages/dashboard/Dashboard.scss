@@ -1,0 +1,63 @@
+@import "../../styles/Global.scss";
+
+//Use "id" as wrapper in order to ensure that styles defined here override any external styles
+#dashboard-page {
+    .dashboard-page {
+        background-color: $light-ash;
+        height: 100vh;
+
+        display: flex;
+
+        .sidebar {
+            width: 300px;
+            background-color: #fff;
+
+            &__header {
+                height: 96px;
+                background-color: $dark-blue;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            &__links {
+                display: flex;
+                flex-direction: column;
+
+                a {
+                    padding: 15px 40px;
+                    display: flex;
+                    align-items: center;
+                    text-decoration: none;
+                    color: $dark-blue;
+                    font-size: 14px;
+                    font-weight: 500;
+
+                    &.active {
+                        background-color: $medium-green;
+                    }
+
+                    img {
+                        margin-right: 20px;
+                    }
+                }
+            }
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+
+            .navbar {
+                height: 96px;
+                background-color: $dark-blue;
+            }
+
+            .dashboard-details {
+                background-color: green;
+                flex: 1;
+            }
+        }
+    }
+}
