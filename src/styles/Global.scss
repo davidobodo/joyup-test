@@ -5,6 +5,8 @@ $dark-blue: #15113b !important;
 $medium-green: #09d5b0 !important;
 $yellow: #ffd343 !important;
 
+$tablet-breakpoint: 768px;
+
 * {
     margin: 0;
     padding: 0;
@@ -13,4 +15,12 @@ $yellow: #ffd343 !important;
 
 body {
     font-family: "Rubik", sans-serif;
+}
+
+h4 {
+    font-size: 16px;
+}
+
+p {
+    font-size: 16px;
 }
