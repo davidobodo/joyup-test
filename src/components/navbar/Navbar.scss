@@ -28,6 +28,7 @@
                 align-items: center;
                 min-width: 210px;
                 height: 48px;
+                cursor: pointer;
 
                 .arrow {
                     border-right: 1px solid $dark-blue;
@@ -43,7 +44,45 @@
                 background-color: #fff;
                 list-style: none;
                 left: 0;
-                display: none;
+                z-index: 10;
+                border-radius: 5px;
+                top: 120%;
+                box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+                width: 270px;
+
+                &:before {
+                    content: "";
+                    position: absolute;
+                    border-bottom: 5px solid #fff;
+                    border-right: 5px solid transparent;
+                    border-left: 5px solid transparent;
+                    top: -5px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+
+                li {
+                    padding: 0px 12px;
+                    height: 30px;
+                    cursor: pointer;
+                    font-size: 12px;
+                    font-weight: 400;
+                    white-space: nowrap;
+                    display: flex;
+                    align-items: center;
+
+                    &:first-child {
+                        border-radius: 5px 5px 0px 0px;
+                    }
+
+                    &:last-child {
+                        border-radius: 0px 0px 5px 5px;
+                    }
+
+                    &:hover {
+                        background-color: $medium-green;
+                    }
+                }
             }
         }
     }

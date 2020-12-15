@@ -12,12 +12,15 @@ const Navbar = () => {
                         <div className="arrow"></div>
                     </div>
                     <ul className="dropdown__options">
-                        <li>Antonios pizza and burger</li>
-                        <li>Bamboo Asia </li>
-                        <li>Bamboo Asia</li>
-                        <li>Bamboo Asia</li>
-                        <li>Choice Market</li>
-                        <li>Cold Stone</li>
+                        <li>BOBASHOP</li>
+                        <li>Anton’s Pizza &amp; Burgers</li>
+                        <li>Bamboo Asia- 1221 boardway</li>
+                        <li>Bamboo Asia- 311 California St</li>
+                        <li>Bamboo Asia- 41 Montgomey St, SF</li>
+                        <li>Bamboo Asia 98 7th st, SF</li>
+                        <li>Choice Market- Denver</li>
+                        <li>Cold Stone Creamery #20738</li>
+                        <li>Cold Stone Creamery - Lockport IL</li>
                     </ul>
                 </div>
             </div>
