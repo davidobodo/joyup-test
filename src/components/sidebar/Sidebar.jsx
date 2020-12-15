@@ -11,6 +11,8 @@ import users from "../../assets/sidebar/users.svg";
 import cart from "../../assets/sidebar/cart.svg";
 import settings from "../../assets/sidebar/settings.svg";
 
+import "./Sidebar.scss";
+
 const Sidebar = ({ isSidebarOpen }) => {
     return (
         <>
@@ -51,6 +53,10 @@ const Sidebar = ({ isSidebarOpen }) => {
                         <img src={settings} alt="" />
                         Messenger Settings
                     </NavLink>
+                </div>
+                <div className="sidebar__visible-on-mobile">
+                    <button className="btn btn-white">Menu Preview</button>
+                    <button className="btn btn-yellow">Logout</button>
                 </div>
             </aside>
             <div className={isSidebarOpen ? "backdrop show" : "backdrop"}></div>

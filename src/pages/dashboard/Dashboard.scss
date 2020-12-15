@@ -7,62 +7,6 @@
         height: 100vh;
         display: flex;
 
-        .sidebar {
-            width: 300px;
-            background-color: #fff;
-            position: relative;
-            z-index: 20;
-            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-            flex-shrink: 0;
-            position: static;
-
-            @media (max-width: $tablet-breakpoint) {
-                position: fixed;
-                height: 100vh;
-                transform: translateX(-100vw);
-                transition: transform 200ms ease-in-out;
-
-                &.is-open {
-                    transform: translateX(0px);
-                }
-            }
-
-            &__header {
-                height: 96px;
-                background-color: $dark-blue;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                @media (max-width: $tablet-breakpoint) {
-                    height: 70px;
-                }
-            }
-
-            &__links {
-                display: flex;
-                flex-direction: column;
-
-                a {
-                    padding: 15px 40px;
-                    display: flex;
-                    align-items: center;
-                    text-decoration: none;
-                    color: $dark-blue;
-                    font-size: 14px;
-                    font-weight: 500;
-
-                    &.active {
-                        background-color: $medium-green;
-                    }
-
-                    img {
-                        margin-right: 20px;
-                    }
-                }
-            }
-        }
-
         .backdrop {
             position: fixed;
             top: 0;
