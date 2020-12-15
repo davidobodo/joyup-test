@@ -60,6 +60,8 @@ const DashboardPage = () => {
         <div id="dashboard-page">
             <div className="dashboard-page">
                 <Sidebar isSidebarOpen={isSidebarOpen} />
+                <div className={isSidebarOpen ? "backdrop show" : "backdrop"} onClick={handleToggleSidebar}></div>
+
                 <Hamburger handleToggleSidebar={handleToggleSidebar} isSidebarOpen={isSidebarOpen} />
                 <main className="content">
                     <Navbar />

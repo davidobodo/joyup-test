@@ -59,7 +59,6 @@ const Sidebar = ({ isSidebarOpen }) => {
                     <button className="btn btn-yellow">Logout</button>
                 </div>
             </aside>
-            <div className={isSidebarOpen ? "backdrop show" : "backdrop"}></div>
         </>
     );
 };
