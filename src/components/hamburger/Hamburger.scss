@@ -1,0 +1,63 @@
+@import "../../styles/Global.scss";
+
+.hamburger-component {
+    position: fixed;
+    z-index: 1000;
+    right: 30px;
+    top: 35px;
+    cursor: pointer;
+
+    @media (min-width: $tablet-breakpoint) {
+        display: none;
+    }
+
+    &.close {
+        .hamburger-component__rows {
+            height: 0;
+
+            &:before {
+                top: 0;
+                transform: rotate(45deg);
+            }
+
+            &:after {
+                top: 0;
+                transform: rotate(-45deg);
+            }
+        }
+    }
+
+    &__rows {
+        width: 25px;
+        height: 3px;
+        background-color: #fff;
+        align-self: center;
+
+        &:before {
+            content: "";
+            width: 25px;
+            height: 3px;
+            background-color: inherit;
+            position: absolute;
+            top: -7px;
+            transition: all 200ms ease-in-out;
+        }
+
+        &:after {
+            content: "";
+            width: 25px;
+            height: 3px;
+            background-color: inherit;
+            position: absolute;
+            top: 7px;
+            transition: all 200ms ease-in-out;
+        }
+    }
+
+    &__box {
+        height: 20px;
+        position: absolute;
+        width: 100%;
+        top: -10px;
+    }
+}

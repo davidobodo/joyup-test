@@ -1,7 +1,8 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useCallback } from "react";
 
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
+import Hamburger from "../../components/hamburger/Hamburger";
 
 import fbIcon from "../../assets/facebook.svg";
 import mesIcon from "../../assets/messenger.svg";
@@ -11,6 +12,18 @@ import infoIcon from "../../assets/info.svg";
 
 import "./Dashboard.scss";
 const DashboardPage = () => {
+    //------------------------------------------------------------------
+    //State
+    //------------------------------------------------------------------
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    //------------------------------------------------------------------
+    //Toggle the display of the sidebar
+    //------------------------------------------------------------------
+    const handleToggleSidebar = useCallback(() => {
+        setIsSidebarOpen(!isSidebarOpen);
+    }, [isSidebarOpen]);
+
     const CARD_INFO = useRef([
         {
             title: "Total Facebook Fans",
@@ -46,7 +59,8 @@ const DashboardPage = () => {
     return (
         <div id="dashboard-page">
             <div className="dashboard-page">
-                <Sidebar />
+                <Sidebar isSidebarOpen={isSidebarOpen} />
+                <Hamburger handleToggleSidebar={handleToggleSidebar} isSidebarOpen={isSidebarOpen} />
                 <main className="content">
                     <Navbar />
                     <div className="dashboard-details">

@@ -5,19 +5,26 @@
     .dashboard-page {
         background-color: $light-ash;
         height: 100vh;
-
         display: flex;
 
         .sidebar {
             width: 300px;
             background-color: #fff;
             position: relative;
-            z-index: 2;
+            z-index: 20;
             box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
             flex-shrink: 0;
+            position: static;
 
             @media (max-width: $tablet-breakpoint) {
-                display: none;
+                position: fixed;
+                height: 100vh;
+                transform: translateX(-100vw);
+                transition: transform 200ms ease-in-out;
+
+                &.is-open {
+                    transform: translateX(0px);
+                }
             }
 
             &__header {
@@ -26,6 +33,10 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+
+                @media (max-width: $tablet-breakpoint) {
+                    height: 70px;
+                }
             }
 
             &__links {
@@ -52,6 +63,22 @@
             }
         }
 
+        .backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 200ms ease-in-out;
+
+            &.show {
+                opacity: 1;
+            }
+        }
+
         .content {
             flex: 1;
             display: flex;
@@ -65,6 +92,10 @@
                 align-items: center;
                 padding: 0px 30px;
                 flex-shrink: 0;
+
+                @media (max-width: $tablet-breakpoint) {
+                    height: 70px;
+                }
 
                 &__left-column {
                     .dropdown {
@@ -85,6 +116,10 @@
                         border: none;
                         border-radius: 10px;
                         outline: none;
+
+                        @media (max-width: $tablet-breakpoint) {
+                            display: none;
+                        }
 
                         &.btn-white {
                             margin-right: 20px;
