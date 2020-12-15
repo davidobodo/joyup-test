@@ -11,7 +11,13 @@ const DashboardPage = () => {
                 <Sidebar />
                 <main className="content">
                     <Navbar />
-                    <section className="dashboard-details"></section>
+                    <div className="dashboard-details">
+                        <section className="dashboard-details__date-wrapper">
+                            <h4>Decembar 3, 2020 - December 9, 2020</h4>
+                        </section>
+                        <section className="dashboard-details__cards-wrapper"></section>
+                        <section className="dashboard-details__graphs-wrapper"></section>
+                    </div>
                 </main>
             </div>
         </div>
