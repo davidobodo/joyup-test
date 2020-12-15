@@ -52,6 +52,40 @@
             .navbar {
                 height: 96px;
                 background-color: $dark-blue;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0px 30px;
+
+                &__left-column {
+                    .dropdown {
+                        font-size: 16px;
+                        font-weight: 500;
+                        padding: 15px 40px;
+                        border: none;
+                        border-radius: 10px;
+                        background-color: #fff;
+                    }
+                }
+
+                &__right-column {
+                    .btn {
+                        font-size: 16px;
+                        font-weight: 500;
+                        padding: 15px 40px;
+                        border: none;
+                        border-radius: 10px;
+                        outline: none;
+
+                        &.btn-white {
+                            margin-right: 20px;
+                        }
+
+                        &.btn-yellow {
+                            background-color: $yellow;
+                        }
+                    }
+                }
             }
 
             .dashboard-details {
