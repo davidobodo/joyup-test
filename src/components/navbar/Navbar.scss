@@ -10,7 +10,7 @@
     padding: 0px 30px;
     flex-shrink: 0;
     width: calc(100vw - 300px);
-    z-index: 1000000;
+    z-index: 100;
 
     @media (max-width: $tablet-breakpoint) {
         height: 70px;
@@ -36,6 +36,7 @@
 
             &.btn-white {
                 margin-right: 20px;
+                background-color: #fff;
             }
 
             &.btn-yellow {
