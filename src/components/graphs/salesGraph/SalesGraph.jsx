@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
 
+import logo2 from "../../../assets/logo2.png";
+
 import "./SalesGraph.scss";
 
 import { valuesFromLabels } from "../GraphUitls";
@@ -10,7 +12,6 @@ const SalesGraph = ({ dateLabels }) => {
         chart: {
             id: "apexchart-example"
         },
-
         yaxis: {
             min: 0,
             max: 1600
@@ -23,6 +24,15 @@ const SalesGraph = ({ dateLabels }) => {
         },
         fill: {
             colors: ["#15113B", "#09D5B0"]
+        },
+        legend: {
+            position: "top",
+            markers: {
+                radius: 0,
+                width: 21,
+                height: 9,
+                fillColors: ["#15113B", "#09D5B0"]
+            }
         }
     });
 
@@ -71,6 +81,7 @@ const SalesGraph = ({ dateLabels }) => {
                     // width={500} height={320}
                 />
             </div>
+            <img src={logo2} alt="" className="logo" />
         </div>
     );
 };

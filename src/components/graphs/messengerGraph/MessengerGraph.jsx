@@ -22,12 +22,22 @@ const MessengerGraph = ({ dateLabels }) => {
         },
         fill: {
             colors: ["#09D5B0"]
+        },
+        legend: {
+            show: true,
+            position: "top",
+            markers: {
+                radius: 0,
+                width: 21,
+                height: 9,
+                fillColors: ["#09D5B0"]
+            }
         }
     });
 
     const [chartSeries, setChartSeries] = useState([
         {
-            name: "subscribes",
+            name: "#Daily Messenger Subscribes (Cumulative)",
             data: valuesFromLabels(230, 330, dateLabels)
         }
     ]);
@@ -45,7 +55,7 @@ const MessengerGraph = ({ dateLabels }) => {
         setChartSeries((prevState) => {
             return [
                 {
-                    name: "Subscribes",
+                    name: "#Daily Messenger Subscribes (Cumulative)",
                     data: valuesFromLabels(230, 330, dateLabels)
                 }
             ];
