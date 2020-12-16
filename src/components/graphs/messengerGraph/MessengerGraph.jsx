@@ -3,26 +3,7 @@ import Chart from "react-apexcharts";
 
 import "./MessengerGraph.scss";
 
-const labelsForOneMonth = () => {
-    let labels = [];
-
-    for (let i = 0; i < 31; i++) {
-        const day = `November ${i + 1} 2020`;
-        labels.push(day);
-    }
-
-    return labels;
-};
-
-const valuesForOneMonth = () => {
-    let values = [];
-    for (let i = 0; i < 31; i++) {
-        const val = Math.random() * (330 - 230) + 230;
-        values.push(parseInt(val));
-    }
-
-    return values;
-};
+import { labelsForOneMonth, valuesForOneMonth } from "../GraphUitls";
 
 const MessengerGraph = () => {
     const [chartOptions, setChartOptions] = useState({
