@@ -4,6 +4,8 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import Hamburger from "../../components/hamburger/Hamburger";
 import DateDisplay from "../../components/dateDisplay/DateDisplay";
+import MessengerGraph from "../../components/graphs/messengerGraph/MessengerGraph";
+import SalesGraph from "../../components/graphs/salesGraph/SalesGraph";
 import useDropdown from "../../components/customHooks/useDropdown";
 
 import fbIcon from "../../assets/facebook.svg";
@@ -90,7 +92,10 @@ const DashboardPage = () => {
                                 );
                             })}
                         </section>
-                        <section className="dashboard-details__graphs-wrapper"></section>
+                        <section className="dashboard-details__graphs-wrapper">
+                            <MessengerGraph />
+                            <SalesGraph />
+                        </section>
                     </div>
                 </main>
             </div>
