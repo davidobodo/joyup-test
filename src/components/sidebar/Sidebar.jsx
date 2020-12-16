@@ -59,6 +59,7 @@ const Sidebar = ({ isSidebarOpen }) => {
                     <button className="btn btn-yellow">Logout</button>
                 </div>
             </aside>
+            <aside className="sidebar-position-fix"></aside>
         </>
     );
 };
