@@ -24,3 +24,36 @@ h4 {
 p {
     font-size: 16px;
 }
+
+.site-loader {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background-color: $dark-blue;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000000000000;
+
+    img {
+        width: 100px;
+        animation: expand 2s ease-in-out infinite;
+    }
+}
+
+@keyframes expand {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.5);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

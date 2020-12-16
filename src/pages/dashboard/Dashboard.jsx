@@ -7,6 +7,7 @@ import Hamburger from "../../components/hamburger/Hamburger";
 import DateDisplay from "../../components/dateDisplay/DateDisplay";
 import MessengerGraph from "../../components/graphs/messengerGraph/MessengerGraph";
 import SalesGraph from "../../components/graphs/salesGraph/SalesGraph";
+import SiteLoader from "../../components/siteLoader/SiteLoader";
 
 import fbIcon from "../../assets/facebook.svg";
 import mesIcon from "../../assets/messenger.svg";
@@ -41,6 +42,7 @@ const DashboardPage = () => {
         initialStartDate.format("MMMM D, YYYY") + " - " + initialEndDate.format("MMMM D, YYYY")
     );
     const [graphDateLabels, setGraphDateLabels] = useState([moment().format("DD-MM-YY")]);
+    const [displayLoader, setDisplayLoader] = useState(true);
 
     //------------------------------------------------------------------
     //When date changes fire this function
@@ -119,8 +121,15 @@ const DashboardPage = () => {
         setGraphDateLabels(dateLabels);
     }, [dateRange]);
 
+    useEffect(() => {
+        setTimeout(() => {
+            setDisplayLoader(false);
+        }, 3000);
+    }, []);
+
     return (
         <div id="dashboard-page">
+            {displayLoader && <SiteLoader />}
             <div className="dashboard-page">
                 <Sidebar isSidebarOpen={isSidebarOpen} />
                 <div className={isSidebarOpen ? "backdrop show" : "backdrop"} onClick={handleToggleSidebar}></div>
