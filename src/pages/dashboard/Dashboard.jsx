@@ -17,9 +17,10 @@ import infoIcon from "../../assets/info.svg";
 
 import "./Dashboard.scss";
 
+import { oneDayData, sevenDaysData, thirtyDaysData, moreData } from "./DashboardConstants";
+
 const initialStartDate = moment();
 const initialEndDate = moment();
-// const initialEndDate = moment().add(29, "days");
 
 const ranges = {
     Today: [moment(), moment()],
@@ -31,10 +32,6 @@ const ranges = {
 };
 const DashboardPage = () => {
     //------------------------------------------------------------------
-    //Helpers
-    //------------------------------------------------------------------
-
-    //------------------------------------------------------------------
     //States
     //------------------------------------------------------------------
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -43,6 +40,13 @@ const DashboardPage = () => {
     );
     const [graphDateLabels, setGraphDateLabels] = useState([moment().format("DD-MM-YY")]);
     const [displayLoader, setDisplayLoader] = useState(true);
+    const [cardValues, setCardValues] = useState({
+        facebookFans: 100,
+        optInUsers: 230,
+        totalOrders: 320,
+        toalNetSales: "$812.14",
+        orderValue: "278.42"
+    });
 
     //------------------------------------------------------------------
     //When date changes fire this function
@@ -61,41 +65,42 @@ const DashboardPage = () => {
     //------------------------------------------------------------------
     //Constants for card
     //------------------------------------------------------------------
-    const CARD_INFO = useRef([
+    const CARD_INFO = [
         {
             title: "Total Facebook Fans",
-            number: "200",
+            number: cardValues.facebookFans,
             logo: fbIcon,
             id: 1
         },
         {
             title: "Total Messenger Opt-in Users",
-            number: "230",
+            number: cardValues.optInUsers,
             logo: mesIcon,
             id: 2
         },
         {
             title: "Total Orders",
-            number: "320",
+            number: cardValues.totalOrders,
             logo: phIcon,
             id: 3
         },
         {
             title: "Total Net Sales",
-            number: "$812.14",
+            number: cardValues.toalNetSales,
             logo: moneyIcon,
             id: 4
         },
         {
             title: "Average Order Value (%)",
-            number: "278.42",
+            number: cardValues.orderValue,
             logo: moneyIcon,
             id: 5
         }
-    ]).current;
+    ];
 
     useEffect(() => {
         const dates = dateRange.split("-");
+        let cardData = oneDayData;
 
         const start = dates[0]; //Format = December 16,2020
         const end = dates[1]; //Format = December 16,2020
@@ -103,8 +108,6 @@ const DashboardPage = () => {
         const _start = moment(start).format("DD-MM-YY"); //Format = 16-12-20
         const _end = moment(end).format("DD-MM-YY"); //Format = 16-12-20
         let active = "";
-
-        console.log(moment(_end, "DD-MM-YY").format("MMMM D, YYYY"), "the end");
 
         let dateLabels = [];
 
@@ -114,11 +117,36 @@ const DashboardPage = () => {
             active = currentDate;
         }
 
+        if (dateLabels.length === 7) {
+            cardData = sevenDaysData;
+        }
+
+        if (dateLabels.length === 30) {
+            cardData = thirtyDaysData;
+        }
+
+        if (dateLabels.length > 30) {
+            cardData = moreData;
+        }
+
         if (dateLabels.length === 1) {
             dateLabels = ["", ...dateLabels, "", "", "", "", ""];
+            cardData = oneDayData;
         }
 
         setGraphDateLabels(dateLabels);
+
+        setCardValues((prevState) => {
+            const { facebookFans, optInUsers, totalOrders, toalNetSales, orderValue } = cardData;
+            return {
+                ...prevState,
+                facebookFans,
+                optInUsers,
+                totalOrders,
+                toalNetSales,
+                orderValue
+            };
+        });
     }, [dateRange]);
 
     useEffect(() => {
