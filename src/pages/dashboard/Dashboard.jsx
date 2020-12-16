@@ -1,4 +1,5 @@
 import React, { useRef, useState, useCallback } from "react";
+import moment from "moment";
 
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
@@ -20,11 +21,29 @@ const DashboardPage = () => {
     //Helpers
     //------------------------------------------------------------------
     const { isDropdownOpen, handleToggleDropdown } = useDropdown();
+    const start = moment();
+    const end = moment().add(29, "days");
+    const ranges = {
+        Today: [moment(), moment()],
+        Yesterday: [moment().subtract(1, "days"), moment().subtract(1, "days")],
+        "Last 7 Days": [moment().subtract(6, "days"), moment()],
+        "Last 30 Days": [moment().subtract(29, "days"), moment()],
+        "This Month": [moment().startOf("month"), moment().endOf("month")],
+        "Last Month": [moment().subtract(1, "month").startOf("month"), moment().subtract(1, "month").endOf("month")]
+    };
 
     //------------------------------------------------------------------
     //States
     //------------------------------------------------------------------
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [dateRange, setDateRange] = useState(start.format("MMMM D, YYYY") + " - " + end.format("MMMM D, YYYY"));
+
+    //------------------------------------------------------------------
+    //When date changes fire this function
+    //------------------------------------------------------------------
+    const handleDateChanged = (e, picker) => {
+        setDateRange(picker.startDate.format("MMMM D, YYYY") + " - " + picker.endDate.format("MMMM D, YYYY"));
+    };
 
     //------------------------------------------------------------------
     //Toggle the display of the sidebar
@@ -74,7 +93,13 @@ const DashboardPage = () => {
                 <main className="content">
                     <Navbar />
                     <div className="dashboard-details">
-                        <DateDisplay isDropdownOpen={isDropdownOpen} handleToggleDropdown={handleToggleDropdown} />
+                        <DateDisplay
+                            ranges={ranges}
+                            handleDateChanged={handleDateChanged}
+                            dateRange={dateRange}
+                            startDate={start}
+                            endDate={end}
+                        />
                         <section className="dashboard-details__cards-wrapper">
                             {CARD_INFO.map((item) => {
                                 const { title, number, logo, id } = item;
