@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback } from "react";
+import React, { useRef, useState, useCallback, useEffect } from "react";
 import moment from "moment";
 
 import Sidebar from "../../components/sidebar/Sidebar";
@@ -15,21 +15,23 @@ import moneyIcon from "../../assets/money.svg";
 import infoIcon from "../../assets/info.svg";
 
 import "./Dashboard.scss";
+
+const initialStartDate = moment();
+const initialEndDate = moment();
+// const initialEndDate = moment().add(29, "days");
+
+const ranges = {
+    Today: [moment(), moment()],
+    Yesterday: [moment().subtract(1, "days"), moment().subtract(1, "days")],
+    "Last 7 Days": [moment().subtract(6, "days"), moment()],
+    "Last 30 Days": [moment().subtract(29, "days"), moment()],
+    "This Month": [moment().startOf("month"), moment().endOf("month")],
+    "Last Month": [moment().subtract(1, "month").startOf("month"), moment().subtract(1, "month").endOf("month")]
+};
 const DashboardPage = () => {
     //------------------------------------------------------------------
     //Helpers
     //------------------------------------------------------------------
-    const initialStartDate = moment();
-    const initialEndDate = moment();
-    // const initialEndDate = moment().add(29, "days");
-    const ranges = {
-        Today: [moment(), moment()],
-        Yesterday: [moment().subtract(1, "days"), moment().subtract(1, "days")],
-        "Last 7 Days": [moment().subtract(6, "days"), moment()],
-        "Last 30 Days": [moment().subtract(29, "days"), moment()],
-        "This Month": [moment().startOf("month"), moment().endOf("month")],
-        "Last Month": [moment().subtract(1, "month").startOf("month"), moment().subtract(1, "month").endOf("month")]
-    };
 
     //------------------------------------------------------------------
     //States
@@ -38,17 +40,20 @@ const DashboardPage = () => {
     const [dateRange, setDateRange] = useState(
         initialStartDate.format("MMMM D, YYYY") + " - " + initialEndDate.format("MMMM D, YYYY")
     );
-    const [updatedStartDate, setUpdatedStartDate] = useState(initialStartDate);
-    const [updatedEndDate, setUpdatedEndDate] = useState(initialEndDate);
+    const [startDate, setStartDate] = useState(initialStartDate);
+    const [endDate, setEndDate] = useState(initialEndDate);
 
     //------------------------------------------------------------------
     //When date changes fire this function
     //------------------------------------------------------------------
-    const handleDateChanged = (e, picker) => {
+    const handleDateChanged = useCallback((e, picker) => {
         setDateRange(picker.startDate.format("MMMM D, YYYY") + " - " + picker.endDate.format("MMMM D, YYYY"));
-        setUpdatedStartDate(picker.startDate);
-        setUpdatedEndDate(picker.endDate);
-    };
+        setStartDate(picker.startDate);
+        setEndDate(picker.endDate);
+    }, []);
+
+    // console.log(startDate.format("DD-MM-YY"), "start date");
+    // console.log(endDate.format("DD-MM-YY"), "end date");
 
     //------------------------------------------------------------------
     //Toggle the display of the sidebar
@@ -57,6 +62,9 @@ const DashboardPage = () => {
         setIsSidebarOpen(!isSidebarOpen);
     }, [isSidebarOpen]);
 
+    //------------------------------------------------------------------
+    //Constants for card
+    //------------------------------------------------------------------
     const CARD_INFO = useRef([
         {
             title: "Total Facebook Fans",
@@ -89,6 +97,27 @@ const DashboardPage = () => {
             id: 5
         }
     ]).current;
+
+    useEffect(() => {
+        const dates = dateRange.split("-");
+
+        const start = dates[0]; //Format = December 16,2020
+        const end = dates[1]; //Format = December 16,2020
+
+        const _start = moment(start).format("DD-MM-YY"); //Format = 16-12-20
+        const _end = moment(end).format("DD-MM-YY"); //Format = 16-12-20
+        let active = "";
+
+        let dateLables = [];
+
+        for (let i = 0; active != _end; i++) {
+            const currentDate = moment(start).add(i, "days").format("DD-MM-YY");
+            dateLables.push(currentDate);
+            active = currentDate;
+        }
+
+        console.log(dateLables, "the label");
+    }, [dateRange]);
     return (
         <div id="dashboard-page">
             <div className="dashboard-page">
@@ -123,11 +152,7 @@ const DashboardPage = () => {
                             })}
                         </section>
                         <section className="dashboard-details__graphs-wrapper">
-                            <MessengerGraph
-                                dateRange={dateRange}
-                                startDate={updatedStartDate}
-                                endDate={updatedEndDate}
-                            />
+                            <MessengerGraph dateRange={dateRange} />
                             <SalesGraph />
                         </section>
                     </div>
