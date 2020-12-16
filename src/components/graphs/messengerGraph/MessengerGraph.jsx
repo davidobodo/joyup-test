@@ -66,7 +66,12 @@ const MessengerGraph = ({ dateLabels }) => {
         <div className="messenger-graph">
             <h4 className="messenger-graph__title">Active Messenger Subscribers</h4>
             <div className="messenger-graph__content">
-                <Chart options={chartOptions} series={chartSeries} type="bar" width={500} height={320} />
+                <Chart
+                    options={chartOptions}
+                    series={chartSeries}
+                    type="bar"
+                    // width={500} height={320}
+                />
             </div>
         </div>
     );
