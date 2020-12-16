@@ -49,9 +49,6 @@ const DashboardPage = () => {
         setDateRange(picker.startDate.format("MMMM D, YYYY") + " - " + picker.endDate.format("MMMM D, YYYY"));
     }, []);
 
-    // console.log(startDate.format("DD-MM-YY"), "start date");
-    // console.log(endDate.format("DD-MM-YY"), "end date");
-
     //------------------------------------------------------------------
     //Toggle the display of the sidebar
     //------------------------------------------------------------------
@@ -105,11 +102,13 @@ const DashboardPage = () => {
         const _end = moment(end).format("DD-MM-YY"); //Format = 16-12-20
         let active = "";
 
+        console.log(moment(_end, "DD-MM-YY").format("MMMM D, YYYY"), "the end");
+
         let dateLabels = [];
 
         for (let i = 0; active != _end; i++) {
             const currentDate = moment(start).add(i, "days").format("DD-MM-YY");
-            dateLabels.push(currentDate);
+            dateLabels.push(moment(currentDate, "DD-MM-YY").format("MMMM D, YYYY"));
             active = currentDate;
         }
 
