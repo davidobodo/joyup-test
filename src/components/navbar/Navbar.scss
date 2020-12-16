@@ -1,6 +1,7 @@
 @import "../../styles/Global.scss";
 
-.navbar {
+.navbar-component {
+    position: fixed;
     height: 96px;
     background-color: $dark-blue;
     display: flex;
@@ -8,9 +9,12 @@
     align-items: center;
     padding: 0px 30px;
     flex-shrink: 0;
+    width: calc(100vw - 300px);
+    z-index: 1000000;
 
     @media (max-width: $tablet-breakpoint) {
         height: 70px;
+        width: 100vw;
     }
 
     &__left-column {
@@ -38,5 +42,15 @@
                 background-color: $yellow;
             }
         }
+    }
+}
+
+.navbar-component-position-fix {
+    height: 96px;
+    opacity: 0;
+    flex-shrink: 0;
+
+    @media (max-width: $tablet-breakpoint) {
+        height: 70px;
     }
 }

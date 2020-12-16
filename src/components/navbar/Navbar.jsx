@@ -9,15 +9,18 @@ const Navbar = () => {
     const { isDropdownOpen, handleToggleDropdown } = useDropdown();
 
     return (
-        <nav className="navbar">
-            <div className="navbar__left-column">
-                <LocationsDropdown isDropdownOpen={isDropdownOpen} handleToggleDropdown={handleToggleDropdown} />
-            </div>
-            <div className="navbar__right-column">
-                <button className="btn btn-white">Menu Preview</button>
-                <button className="btn btn-yellow">Logout</button>
-            </div>
-        </nav>
+        <>
+            <nav className="navbar-component">
+                <div className="navbar-component__left-column">
+                    <LocationsDropdown isDropdownOpen={isDropdownOpen} handleToggleDropdown={handleToggleDropdown} />
+                </div>
+                <div className="navbar-component__right-column">
+                    <button className="btn btn-white">Menu Preview</button>
+                    <button className="btn btn-yellow">Logout</button>
+                </div>
+            </nav>
+            <nav className="navbar-component-position-fix">jkj</nav>
+        </>
     );
 };
 
