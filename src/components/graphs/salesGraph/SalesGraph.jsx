@@ -34,6 +34,12 @@ const SalesGraph = () => {
             //labels for one month
             //----------------------
             categories: labelsForOneMonth()
+        },
+        dataLabels: {
+            enabled: false
+        },
+        fill: {
+            colors: ["#15113B", "#09D5B0"]
         }
     });
 

@@ -15,21 +15,35 @@ const MessengerGraph = () => {
             min: 230,
             max: 330
         },
-        //X axis for one day
-        // xaxis: {
-        //     categories: ["", "Today", , , , ,]
-        // },
         xaxis: {
+            //----------------------
+            //X axis for one day
+            //----------------------
+            //categories: ["", "Today", , , , ,]
+            //----------------------
+            //X axis for one month
+            //----------------------
             categories: labelsForOneMonth()
+        },
+        dataLabels: {
+            enabled: false
+        },
+        fill: {
+            colors: ["#09D5B0"]
         }
     });
 
     const [chartSeries, setChartSeries] = useState([
+        //----------------------
         //Value for one day
+        //----------------------
         // {
         //     name: "series-1",
         //     data: ["", 270, , , , ,]
         // },
+        //----------------------
+        //Value for one month
+        //----------------------
         {
             name: "series-1",
             data: valuesForOneMonth()
