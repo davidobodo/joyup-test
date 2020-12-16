@@ -11,6 +11,10 @@
         color: $dark-blue;
     }
 
+    &__content {
+        min-height: 380px;
+    }
+
     .apexcharts-menu-icon {
         display: none;
     }

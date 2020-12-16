@@ -70,16 +70,12 @@ const SalesGraph = ({ dateLabels }) => {
             ];
         });
     }, [dateLabels]);
+
     return (
         <div className="sales-graph">
             <h4 className="sales-graph__title">Net Sales($)</h4>
             <div className="sales-graph__content">
-                <Chart
-                    options={chartOptions}
-                    series={chartSeries}
-                    type="bar"
-                    // width={500} height={320}
-                />
+                <Chart options={chartOptions} series={chartSeries} type="bar" width="100%" height="100%" />
             </div>
             <img src={logo2} alt="" className="logo" />
         </div>
