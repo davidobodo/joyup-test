@@ -91,6 +91,10 @@
                     display: grid;
                     grid-template-columns: 1fr 1fr;
                     grid-gap: 40px;
+
+                    @media (max-width: 1240px) {
+                        grid-template-columns: 1fr;
+                    }
                 }
             }
         }

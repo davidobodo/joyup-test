@@ -7,7 +7,6 @@ import Hamburger from "../../components/hamburger/Hamburger";
 import DateDisplay from "../../components/dateDisplay/DateDisplay";
 import MessengerGraph from "../../components/graphs/messengerGraph/MessengerGraph";
 import SalesGraph from "../../components/graphs/salesGraph/SalesGraph";
-import useDropdown from "../../components/customHooks/useDropdown";
 
 import fbIcon from "../../assets/facebook.svg";
 import mesIcon from "../../assets/messenger.svg";
@@ -20,9 +19,9 @@ const DashboardPage = () => {
     //------------------------------------------------------------------
     //Helpers
     //------------------------------------------------------------------
-    const { isDropdownOpen, handleToggleDropdown } = useDropdown();
-    const start = moment();
-    const end = moment().add(29, "days");
+    const initialStartDate = moment();
+    const initialEndDate = moment();
+    // const initialEndDate = moment().add(29, "days");
     const ranges = {
         Today: [moment(), moment()],
         Yesterday: [moment().subtract(1, "days"), moment().subtract(1, "days")],
@@ -36,13 +35,19 @@ const DashboardPage = () => {
     //States
     //------------------------------------------------------------------
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    const [dateRange, setDateRange] = useState(start.format("MMMM D, YYYY") + " - " + end.format("MMMM D, YYYY"));
+    const [dateRange, setDateRange] = useState(
+        initialStartDate.format("MMMM D, YYYY") + " - " + initialEndDate.format("MMMM D, YYYY")
+    );
+    const [updatedStartDate, setUpdatedStartDate] = useState(initialStartDate);
+    const [updatedEndDate, setUpdatedEndDate] = useState(initialEndDate);
 
     //------------------------------------------------------------------
     //When date changes fire this function
     //------------------------------------------------------------------
     const handleDateChanged = (e, picker) => {
         setDateRange(picker.startDate.format("MMMM D, YYYY") + " - " + picker.endDate.format("MMMM D, YYYY"));
+        setUpdatedStartDate(picker.startDate);
+        setUpdatedEndDate(picker.endDate);
     };
 
     //------------------------------------------------------------------
@@ -97,8 +102,8 @@ const DashboardPage = () => {
                             ranges={ranges}
                             handleDateChanged={handleDateChanged}
                             dateRange={dateRange}
-                            startDate={start}
-                            endDate={end}
+                            startDate={initialStartDate}
+                            endDate={initialEndDate}
                         />
                         <section className="dashboard-details__cards-wrapper">
                             {CARD_INFO.map((item) => {
@@ -118,7 +123,11 @@ const DashboardPage = () => {
                             })}
                         </section>
                         <section className="dashboard-details__graphs-wrapper">
-                            <MessengerGraph />
+                            <MessengerGraph
+                                dateRange={dateRange}
+                                startDate={updatedStartDate}
+                                endDate={updatedEndDate}
+                            />
                             <SalesGraph />
                         </section>
                     </div>

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, memo, useEffect } from "react";
 import Chart from "react-apexcharts";
 
 import "./MessengerGraph.scss";
 
 import { labelsForOneMonth, valuesForOneMonth } from "../GraphUitls";
 
-const MessengerGraph = () => {
+const MessengerGraph = ({ dateRange }) => {
     const [chartOptions, setChartOptions] = useState({
         chart: {
             id: "apexchart-example"
@@ -49,14 +49,20 @@ const MessengerGraph = () => {
             data: valuesForOneMonth()
         }
     ]);
+
     return (
         <div className="messenger-graph">
             <h4 className="messenger-graph__title">Active Messenger Subscribers</h4>
             <div className="messenger-graph__content">
-                <Chart options={chartOptions} series={chartSeries} type="bar" width={500} height={320} />
+                <Chart
+                    options={chartOptions}
+                    series={chartSeries}
+                    type="bar"
+                    // width={500} height={320}
+                />
             </div>
         </div>
     );
 };
 
-export default MessengerGraph;
+export default memo(MessengerGraph);

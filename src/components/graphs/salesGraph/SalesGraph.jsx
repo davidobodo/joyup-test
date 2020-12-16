@@ -82,7 +82,12 @@ const SalesGraph = () => {
         <div className="sales-graph">
             <h4 className="sales-graph__title">Net Sales($)</h4>
             <div className="sales-graph__content">
-                <Chart options={chartOptions} series={chartSeries} type="bar" width={500} height={320} />
+                <Chart
+                    options={chartOptions}
+                    series={chartSeries}
+                    type="bar"
+                    // width={500} height={320}
+                />
             </div>
         </div>
     );
