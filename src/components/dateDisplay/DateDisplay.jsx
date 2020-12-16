@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import moment from "moment";
 import { LinkedCalendar } from "rb-datepicker";
+import DateRangePicker from "react-bootstrap-daterangepicker";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-daterangepicker/daterangepicker.css";
 
@@ -25,6 +26,7 @@ const DateDisplay = ({ isDropdownOpen, handleToggleDropdown }) => {
         "This Month": [moment().startOf("month"), moment().endOf("month")],
         "Last Month": [moment().subtract(1, "month").startOf("month"), moment().subtract(1, "month").endOf("month")]
     };
+
     return (
         <div className={isDropdownOpen ? "date-display-component is-open" : "date-display-component"}>
             <h4 className="date-display-component__header" onClick={handleToggleDropdown}>
@@ -39,27 +41,9 @@ const DateDisplay = ({ isDropdownOpen, handleToggleDropdown }) => {
                 <li>Last Month</li>
                 <li>Custom Range</li>
             </ul>
-            <LinkedCalendar
-                onDatesChange={onDatesChange}
-                showDropdowns={false}
-                // startDate={start}
-                // endDate={end}
-                minDate={start}
-                showWeekNumbers={false}
-                showCustomRangeLabel={true}
-                range={{
-                    Today: [moment(), moment()],
-                    Yesterday: [moment().subtract(1, "days"), moment().subtract(1, "days")],
-                    "Last 7 Days": [moment().subtract(6, "days"), moment()],
-                    "Last 30 Days": [moment().subtract(29, "days"), moment()],
-                    "This Month": [moment().startOf("month"), moment().endOf("month")],
-                    "Last Month": [
-                        moment().subtract(1, "month").startOf("month"),
-                        moment().subtract(1, "month").endOf("month")
-                    ]
-                }}
-                alwaysShowCalendars={true}
-            />
+            <DateRangePicker initialSettings={{ startDate: "1/1/2014", endDate: "3/1/2014", ranges: ranges }}>
+                <button>Click Me To Open Picker!</button>
+            </DateRangePicker>
         </div>
     );
 };
