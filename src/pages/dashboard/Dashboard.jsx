@@ -40,16 +40,13 @@ const DashboardPage = () => {
     const [dateRange, setDateRange] = useState(
         initialStartDate.format("MMMM D, YYYY") + " - " + initialEndDate.format("MMMM D, YYYY")
     );
-    const [startDate, setStartDate] = useState(initialStartDate);
-    const [endDate, setEndDate] = useState(initialEndDate);
+    const [graphDateLabels, setGraphDateLabels] = useState([moment().format("DD-MM-YY")]);
 
     //------------------------------------------------------------------
     //When date changes fire this function
     //------------------------------------------------------------------
     const handleDateChanged = useCallback((e, picker) => {
         setDateRange(picker.startDate.format("MMMM D, YYYY") + " - " + picker.endDate.format("MMMM D, YYYY"));
-        setStartDate(picker.startDate);
-        setEndDate(picker.endDate);
     }, []);
 
     // console.log(startDate.format("DD-MM-YY"), "start date");
@@ -108,16 +105,21 @@ const DashboardPage = () => {
         const _end = moment(end).format("DD-MM-YY"); //Format = 16-12-20
         let active = "";
 
-        let dateLables = [];
+        let dateLabels = [];
 
         for (let i = 0; active != _end; i++) {
             const currentDate = moment(start).add(i, "days").format("DD-MM-YY");
-            dateLables.push(currentDate);
+            dateLabels.push(currentDate);
             active = currentDate;
         }
 
-        console.log(dateLables, "the label");
+        if (dateLabels.length === 1) {
+            dateLabels = ["", ...dateLabels, "", "", "", "", ""];
+        }
+
+        setGraphDateLabels(dateLabels);
     }, [dateRange]);
+
     return (
         <div id="dashboard-page">
             <div className="dashboard-page">
@@ -152,8 +154,8 @@ const DashboardPage = () => {
                             })}
                         </section>
                         <section className="dashboard-details__graphs-wrapper">
-                            <MessengerGraph dateRange={dateRange} />
-                            <SalesGraph />
+                            <MessengerGraph dateLabels={graphDateLabels} />
+                            <SalesGraph dateLabels={graphDateLabels} />
                         </section>
                     </div>
                 </main>

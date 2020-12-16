@@ -3,27 +3,19 @@ import Chart from "react-apexcharts";
 
 import "./MessengerGraph.scss";
 
-import { labelsForOneMonth, valuesForOneMonth } from "../GraphUitls";
+import { valuesFromLabels } from "../GraphUitls";
 
-const MessengerGraph = ({ dateRange }) => {
+const MessengerGraph = ({ dateLabels }) => {
     const [chartOptions, setChartOptions] = useState({
         chart: {
             id: "apexchart-example"
         },
-
         yaxis: {
             min: 230,
             max: 330
         },
         xaxis: {
-            //----------------------
-            //X axis for one day
-            //----------------------
-            //categories: ["", "Today", , , , ,]
-            //----------------------
-            //X axis for one month
-            //----------------------
-            categories: labelsForOneMonth()
+            categories: dateLabels
         },
         dataLabels: {
             enabled: false
@@ -34,21 +26,31 @@ const MessengerGraph = ({ dateRange }) => {
     });
 
     const [chartSeries, setChartSeries] = useState([
-        //----------------------
-        //Value for one day
-        //----------------------
-        // {
-        //     name: "series-1",
-        //     data: ["", 270, , , , ,]
-        // },
-        //----------------------
-        //Value for one month
-        //----------------------
         {
-            name: "series-1",
-            data: valuesForOneMonth()
+            name: "subscribes",
+            data: valuesFromLabels(230, 330, dateLabels)
         }
     ]);
+
+    useEffect(() => {
+        setChartOptions((prevState) => {
+            return {
+                ...prevState,
+                xaxis: {
+                    categories: dateLabels
+                }
+            };
+        });
+
+        setChartSeries((prevState) => {
+            return [
+                {
+                    name: "Subscribes",
+                    data: valuesFromLabels(230, 330, dateLabels)
+                }
+            ];
+        });
+    }, [dateLabels]);
 
     return (
         <div className="messenger-graph">

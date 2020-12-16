@@ -1,17 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
 
 import "./SalesGraph.scss";
 
-import {
-    labelsForOneMonth,
-    valuesForOneMonth,
-    labelsForOneWeek,
-    secondValuesForOneMonth,
-    firstValuesForOneMonth
-} from "../GraphUitls";
+import { valuesFromLabels } from "../GraphUitls";
 
-const SalesGraph = () => {
+const SalesGraph = ({ dateLabels }) => {
     const [chartOptions, setChartOptions] = useState({
         chart: {
             id: "apexchart-example"
@@ -22,18 +16,7 @@ const SalesGraph = () => {
             max: 1600
         },
         xaxis: {
-            //----------------------
-            //labels for 1 day
-            //----------------------
-            // categories: ["", "Today", , , , ,],
-            //----------------------
-            //labels for 7 days
-            //----------------------
-            // categories: labelsForOneWeek()
-            //----------------------
-            //labels for one month
-            //----------------------
-            categories: labelsForOneMonth()
+            categories: dateLabels
         },
         dataLabels: {
             enabled: false
@@ -44,40 +27,39 @@ const SalesGraph = () => {
     });
 
     const [chartSeries, setChartSeries] = useState([
-        //----------------------
-        //Value for one day
-        //----------------------
-        // {
-        //     name: "series-1",
-        //     data: ["", 550, , , , ,]
-        // },
-        // {
-        //     name: "series-1",
-        //     data: ["", 280, , , , ,]
-        // }
-        //----------------------
-        //Value for 7 days
-        //----------------------
-        // {
-        //     name: "series-1",
-        //     data: [700, 500, 400, 700, 950, 780, 820]
-        // },
-        // {
-        //     name: "series-2",
-        //     data: [380, 700, 570, 430, 450, 200, 500]
-        // }
-        //----------------------
-        //Value for One Month
-        //----------------------
         {
-            name: "series-1",
-            data: firstValuesForOneMonth()
+            name: "Gross sales",
+            data: valuesFromLabels(0, 1600, dateLabels)
         },
         {
-            name: "series-2",
-            data: secondValuesForOneMonth()
+            name: "Net Sales",
+            data: valuesFromLabels(0, 1600, dateLabels)
         }
     ]);
+
+    useEffect(() => {
+        setChartOptions((prevState) => {
+            return {
+                ...prevState,
+                xaxis: {
+                    categories: dateLabels
+                }
+            };
+        });
+
+        setChartSeries((prevState) => {
+            return [
+                {
+                    name: "Gross sales",
+                    data: valuesFromLabels(0, 1600, dateLabels)
+                },
+                {
+                    name: "Net Sales",
+                    data: valuesFromLabels(0, 1600, dateLabels)
+                }
+            ];
+        });
+    }, [dateLabels]);
     return (
         <div className="sales-graph">
             <h4 className="sales-graph__title">Net Sales($)</h4>
