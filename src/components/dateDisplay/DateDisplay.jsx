@@ -14,8 +14,8 @@ const DateDisplay = ({ isDropdownOpen, handleToggleDropdown }) => {
     //------------------------------------------------------------------
     //When date changes fire this function
     //------------------------------------------------------------------
-    const onDatesChange = ({ startDate, endDate }) => {
-        setDateRange(startDate.format("MMMM D, YYYY") + " - " + endDate.format("MMMM D, YYYY"));
+    const onDatesChange = (e, picker) => {
+        setDateRange(picker.startDate.format("MMMM D, YYYY") + " - " + picker.endDate.format("MMMM D, YYYY"));
     };
 
     const ranges = {
@@ -28,21 +28,17 @@ const DateDisplay = ({ isDropdownOpen, handleToggleDropdown }) => {
     };
 
     return (
-        <div className={isDropdownOpen ? "date-display-component is-open" : "date-display-component"}>
-            <h4 className="date-display-component__header" onClick={handleToggleDropdown}>
-                {dateRange}
-            </h4>
-            <ul className="date-display-component__options">
-                <li>Today</li>
-                <li>Yesterday</li>
-                <li>Last 7 Days</li>
-                <li>Last 30 Days</li>
-                <li>This Month</li>
-                <li>Last Month</li>
-                <li>Custom Range</li>
-            </ul>
-            <DateRangePicker initialSettings={{ startDate: "1/1/2014", endDate: "3/1/2014", ranges: ranges }}>
-                <button>Click Me To Open Picker!</button>
+        <div className="date-display-component">
+            <DateRangePicker
+                initialSettings={{
+                    startDate: "1/1/2014",
+                    endDate: "3/1/2014",
+                    ranges: ranges
+                }}
+                onDatesChange={onDatesChange}
+                onApply={onDatesChange}
+            >
+                <h4 className="date-display-component__header">{dateRange}</h4>
             </DateRangePicker>
         </div>
     );
