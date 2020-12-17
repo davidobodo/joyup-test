@@ -8,6 +8,24 @@
 
     &__title {
         color: $dark-blue;
+        margin-bottom: 15px;
+    }
+
+    &__custom-legend {
+        font-family: "Rubik", sans-serif !important;
+        font-size: 10px !important;
+        font-weight: 400 !important;
+        color: #999999 !important;
+        margin: auto;
+        text-align: center;
+
+        span {
+            width: 21px;
+            height: 9px;
+            background-color: #09d5b0;
+            display: inline-block;
+            margin-right: 10px;
+        }
     }
 
     &__content {

@@ -70,6 +70,10 @@ const MessengerGraph = ({ dateLabels }) => {
     return (
         <div className="messenger-graph">
             <h4 className="messenger-graph__title">Active Messenger Subscribers</h4>
+            <div className="messenger-graph__custom-legend">
+                <span></span>
+                #Daily Messenger Subscribes (Cumulative)
+            </div>
             <div className="messenger-graph__content">
                 <Chart options={chartOptions} series={chartSeries} type="bar" width="100%" height="100%" />
             </div>
