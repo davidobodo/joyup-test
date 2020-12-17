@@ -112,12 +112,12 @@ const DashboardPage = () => {
         const start = dates[0]; //Format = December 16,2020
         const end = dates[1]; //Format = December 16,2020
 
-        const _start = moment(start).format("DD-MM-YY"); //Format = 16-12-20
         const _end = moment(end).format("DD-MM-YY"); //Format = 16-12-20
         let active = "";
 
         let dateLabels = [];
 
+        //Used != instead of !== because we want implicit coercion
         for (let i = 0; active != _end; i++) {
             const currentDate = moment(start).add(i, "days").format("DD-MM-YY");
             dateLabels.push(moment(currentDate, "DD-MM-YY").format("MMMM D, YYYY"));
