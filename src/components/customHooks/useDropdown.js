@@ -4,7 +4,7 @@ const useDropdown = () => {
     //------------------------------------------------------------------
     //State
     //------------------------------------------------------------------
-    const [selectedOption, setSelectedOption] = useState("");
+    const [selectedOption, setSelectedOption] = useState("Location");
     const [isDropdownOpen, setIsDropdodwnOpen] = useState(false);
 
     //------------------------------------------------------------------
@@ -14,8 +14,17 @@ const useDropdown = () => {
         setIsDropdodwnOpen(!isDropdownOpen);
     }, [isDropdownOpen]);
 
+    //------------------------------------------------------------------
+    //If an option is selected
+    //------------------------------------------------------------------
+    const handleSelectOption = useCallback((e) => {
+        setSelectedOption(e.target.textContent);
+        setIsDropdodwnOpen(false);
+    }, []);
+
     return {
         selectedOption,
+        handleSelectOption,
         isDropdownOpen,
         handleToggleDropdown
     };

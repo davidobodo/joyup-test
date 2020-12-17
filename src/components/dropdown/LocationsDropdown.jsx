@@ -2,14 +2,19 @@ import React, { memo } from "react";
 
 import "./LocationsDropdown.scss";
 
-const LocationsDropdown = ({ isDropdownOpen, handleToggleDropdown }) => {
+const LocationsDropdown = ({
+    isDropdownOpen,
+    handleToggleDropdown,
+    handleSelectOption,
+    selectedOption = "Location"
+}) => {
     return (
         <div className={isDropdownOpen ? "locations-dropdown is-open" : "locations-dropdown"}>
             <div className="locations-dropdown__header" onClick={handleToggleDropdown}>
-                Location
+                {selectedOption}
                 <div className="arrow"></div>
             </div>
-            <ul className="locations-dropdown__options">
+            <ul className="locations-dropdown__options" onClick={handleSelectOption}>
                 <li>BOBASHOP</li>
                 <li>Anton’s Pizza &amp; Burgers</li>
                 <li>Bamboo Asia- 1221 boardway</li>
