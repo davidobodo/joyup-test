@@ -1,13 +1,13 @@
 {
   "files": {
     "Dashboard.css": "/static/css/Dashboard.9630ea53.chunk.css",
-    "Dashboard.js": "/static/js/Dashboard.9c3cd78b.chunk.js",
-    "Dashboard.js.map": "/static/js/Dashboard.9c3cd78b.chunk.js.map",
+    "Dashboard.js": "/static/js/Dashboard.b0ba8784.chunk.js",
+    "Dashboard.js.map": "/static/js/Dashboard.b0ba8784.chunk.js.map",
     "main.css": "/static/css/main.369a4c88.chunk.css",
     "main.js": "/static/js/main.480b72b4.chunk.js",
     "main.js.map": "/static/js/main.480b72b4.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.a718bfe8.js",
-    "runtime-main.js.map": "/static/js/runtime-main.a718bfe8.js.map",
+    "runtime-main.js": "/static/js/runtime-main.90a0dcef.js",
+    "runtime-main.js.map": "/static/js/runtime-main.90a0dcef.js.map",
     "static/js/3.eb0ea35b.chunk.js": "/static/js/3.eb0ea35b.chunk.js",
     "static/js/3.eb0ea35b.chunk.js.map": "/static/js/3.eb0ea35b.chunk.js.map",
     "static/css/4.2450a4b5.chunk.css": "/static/css/4.2450a4b5.chunk.css",
@@ -37,7 +37,7 @@
     "static/media/users.f9c3163c.svg": "/static/media/users.f9c3163c.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.a718bfe8.js",
+    "static/js/runtime-main.90a0dcef.js",
     "static/js/3.eb0ea35b.chunk.js",
     "static/css/main.369a4c88.chunk.css",
     "static/js/main.480b72b4.chunk.js"
