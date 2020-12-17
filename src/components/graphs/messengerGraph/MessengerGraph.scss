@@ -14,7 +14,16 @@
         min-height: 380px;
     }
 
+    //------------------------------------------------------------------
+    //Graph component override
+    //------------------------------------------------------------------
     .apexcharts-menu-icon {
         display: none;
+    }
+    .apexcharts-legend-text {
+        font-family: "Rubik", sans-serif !important;
+        font-size: 10px !important;
+        font-weight: 400 !important;
+        color: #999999 !important;
     }
 }

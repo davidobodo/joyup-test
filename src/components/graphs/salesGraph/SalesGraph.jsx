@@ -8,6 +8,9 @@ import "./SalesGraph.scss";
 import { valuesFromLabels } from "../GraphUitls";
 
 const SalesGraph = ({ dateLabels }) => {
+    //------------------------------------------------------------------
+    //States
+    //------------------------------------------------------------------
     const [chartOptions, setChartOptions] = useState({
         chart: {
             id: "apexchart-example"
@@ -47,6 +50,9 @@ const SalesGraph = ({ dateLabels }) => {
         }
     ]);
 
+    //------------------------------------------------------------------
+    //When dateLabels changes update state
+    //------------------------------------------------------------------
     useEffect(() => {
         setChartOptions((prevState) => {
             return {

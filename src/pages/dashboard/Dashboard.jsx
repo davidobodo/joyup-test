@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import moment from "moment";
 
 import Sidebar from "../../components/sidebar/Sidebar";
@@ -19,6 +19,9 @@ import "./Dashboard.scss";
 
 import { oneDayData, sevenDaysData, thirtyDaysData, moreData } from "./DashboardConstants";
 
+//------------------------------------------------------------------
+//Some Helpers
+//------------------------------------------------------------------
 const initialStartDate = moment();
 const initialEndDate = moment();
 
@@ -30,6 +33,7 @@ const ranges = {
     "This Month": [moment().startOf("month"), moment().endOf("month")],
     "Last Month": [moment().subtract(1, "month").startOf("month"), moment().subtract(1, "month").endOf("month")]
 };
+
 const DashboardPage = () => {
     //------------------------------------------------------------------
     //States
@@ -98,6 +102,9 @@ const DashboardPage = () => {
         }
     ];
 
+    //------------------------------------------------------------------
+    //When date range changes, fire this effect to update graph and cards
+    //------------------------------------------------------------------
     useEffect(() => {
         const dates = dateRange.split("-");
         let cardData = oneDayData;
@@ -149,6 +156,9 @@ const DashboardPage = () => {
         });
     }, [dateRange]);
 
+    //------------------------------------------------------------------
+    //Just to show a nice loader on the page for 3 seconds 😁
+    //------------------------------------------------------------------
     useEffect(() => {
         setTimeout(() => {
             setDisplayLoader(false);
@@ -157,14 +167,22 @@ const DashboardPage = () => {
 
     return (
         <div id="dashboard-page">
+            {/* Loader */}
             {displayLoader && <SiteLoader />}
             <div className="dashboard-page">
+                {/* Sidebar */}
                 <Sidebar isSidebarOpen={isSidebarOpen} />
+
+                {/* Backdrop */}
                 <div className={isSidebarOpen ? "backdrop show" : "backdrop"} onClick={handleToggleSidebar}></div>
+
+                {/* Hamburger */}
                 <Hamburger handleToggleSidebar={handleToggleSidebar} isSidebarOpen={isSidebarOpen} />
                 <main className="content">
+                    {/* Navbar */}
                     <Navbar />
                     <div className="dashboard-details">
+                        {/* Date Picker */}
                         <DateDisplay
                             ranges={ranges}
                             handleDateChanged={handleDateChanged}
@@ -172,6 +190,8 @@ const DashboardPage = () => {
                             startDate={initialStartDate}
                             endDate={initialEndDate}
                         />
+
+                        {/* Cards */}
                         <section className="dashboard-details__cards-wrapper">
                             {CARD_INFO.map((item) => {
                                 const { title, number, logo, id } = item;
@@ -189,6 +209,8 @@ const DashboardPage = () => {
                                 );
                             })}
                         </section>
+
+                        {/* Column Graphs */}
                         <section className="dashboard-details__graphs-wrapper">
                             <MessengerGraph dateLabels={graphDateLabels} />
                             <SalesGraph dateLabels={graphDateLabels} />

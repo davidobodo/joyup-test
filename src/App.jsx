@@ -1,11 +1,11 @@
 import React, { lazy, Suspense } from "react";
-
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import SiteLoader from "./components/siteLoader/SiteLoader";
 
 const Dashboard = lazy(() => import("./pages/dashboard/Dashboard" /* webpackChunkName: "Dashboard" */));
 
+//Note: Other routes dont have pages yet, so we load Dashboard main route in the stead of other routes
 const App = () => {
     return (
         <BrowserRouter>

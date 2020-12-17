@@ -6,6 +6,9 @@ import "./MessengerGraph.scss";
 import { valuesFromLabels } from "../GraphUitls";
 
 const MessengerGraph = ({ dateLabels }) => {
+    //------------------------------------------------------------------
+    //States
+    //------------------------------------------------------------------
     const [chartOptions, setChartOptions] = useState({
         chart: {
             id: "apexchart-example"
@@ -34,7 +37,6 @@ const MessengerGraph = ({ dateLabels }) => {
             }
         }
     });
-
     const [chartSeries, setChartSeries] = useState([
         {
             name: "#Daily Messenger Subscribes (Cumulative)",
@@ -42,6 +44,9 @@ const MessengerGraph = ({ dateLabels }) => {
         }
     ]);
 
+    //------------------------------------------------------------------
+    //When dateLabels changes update state
+    //------------------------------------------------------------------
     useEffect(() => {
         setChartOptions((prevState) => {
             return {

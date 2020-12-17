@@ -18,26 +18,25 @@
     }
 }
 
+//------------------------------------------------------------------
+//Date Picker component Overrides
+//------------------------------------------------------------------
 .daterangepicker .ranges li.active {
     background-color: $medium-green;
 }
-
 .daterangepicker td.active,
 .daterangepicker td.active:hover {
     background-color: $medium-green;
 }
-
 .drp-selected {
     font-size: 12px !important;
     color: #15113b !important;
     font-weight: 400 !important;
 }
-
 .btn-primary {
     background-color: $medium-green;
     border-color: $medium-green;
 }
-
 .btn-sm {
     font-family: "Rubik", sans-serif;
     font-size: 12px;
@@ -45,7 +44,6 @@
     border-radius: 6px !important;
     padding: 4px 15px;
 }
-
 .cancelBtn {
     background-color: #efefef !important;
 }

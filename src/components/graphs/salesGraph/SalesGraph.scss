@@ -14,18 +14,18 @@
     &__content {
         min-height: 380px;
     }
-
+    //------------------------------------------------------------------
+    //Graph component override
+    //------------------------------------------------------------------
     .apexcharts-menu-icon {
         display: none;
     }
-
     .apexcharts-legend-text {
         font-family: "Rubik", sans-serif !important;
         font-size: 10px !important;
         font-weight: 400 !important;
         color: #999999 !important;
     }
-
     .logo {
         position: absolute;
         box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
